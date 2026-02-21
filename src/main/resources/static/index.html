@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AntiGravityBoard - Collaborative Whiteboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Auth Section -->
+        <div id="auth-section" class="panel">
+            <h1>AntiGravityBoard</h1>
+            <p class="subtitle">Real-time collaborative whiteboard</p>
+            <div id="auth-tabs">
+                <button class="tab active" data-tab="login">Login</button>
+                <button class="tab" data-tab="register">Register</button>
+            </div>
+            <div id="login-form" class="auth-form">
+                <input type="text" id="login-username" placeholder="Username" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button id="login-btn">Login</button>
+            </div>
+            <div id="register-form" class="auth-form hidden">
+                <input type="text" id="register-username" placeholder="Username" required>
+                <input type="email" id="register-email" placeholder="Email" required>
+                <input type="password" id="register-password" placeholder="Password (min 6 chars)" required>
+                <button id="register-btn">Register</button>
+            </div>
+            <p id="auth-error" class="error hidden"></p>
+        </div>
+
+        <!-- Board Section -->
+        <div id="board-section" class="hidden">
+            <header class="toolbar">
+                <div class="toolbar-left">
+                    <span id="board-name">Board</span>
+                    <span id="user-badge"></span>
+                </div>
+                <div class="toolbar-center">
+                    <select id="tool-select">
+                        <option value="line">Line</option>
+                        <option value="rectangle">Rectangle</option>
+                        <option value="circle">Circle</option>
+                        <option value="text">Text</option>
+                        <option value="erase">Erase</option>
+                    </select>
+                    <input type="color" id="color-picker" value="#000000" title="Color">
+                    <input type="range" id="stroke-width" min="1" max="20" value="3" title="Stroke width">
+                    <span id="stroke-preview"></span>
+                    <button id="clear-btn">Clear Board</button>
+                </div>
+                <div class="toolbar-right">
+                    <button id="new-board-btn">New Board</button>
+                    <button id="logout-btn">Logout</button>
+                </div>
+            </header>
+            <div class="canvas-container">
+                <canvas id="whiteboard"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.6.1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
